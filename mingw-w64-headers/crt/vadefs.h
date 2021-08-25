@@ -37,51 +37,51 @@ extern "C" {
 #endif /* _VA_LIST_DEFINED */
 
 #ifdef __cplusplus
-#define _ADDRESSOF(v) (&reinterpret_cast<const char &>(v))
+#define _ADDRESSOF(_V) (&reinterpret_cast<const char &>(_V))
 #else
-#define _ADDRESSOF(v) (&(v))
+#define _ADDRESSOF(_V) (&(_V))
 #endif
 
 #if defined (__GNUC__)
 /* Use GCC builtins */
 
-#define _crt_va_start(v,l)	__builtin_va_start(v,l)
-#define _crt_va_arg(v,l)	__builtin_va_arg(v,l)
-#define _crt_va_end(v)		__builtin_va_end(v)
-#define _crt_va_copy(d,s)	__builtin_va_copy(d,s)
+#define _crt_va_start(_V,_L)	__builtin_va_start(_V,_L)
+#define _crt_va_arg(_V,_L)	__builtin_va_arg(_V,_L)
+#define _crt_va_end(_V)		__builtin_va_end(_V)
+#define _crt_va_copy(_D,_S)	__builtin_va_copy(_D,_S)
 
 #elif defined(_MSC_VER)
 /* MSVC specific */
 
 #if defined(_M_IA64)
 #define _VA_ALIGN 8
-#define _SLOTSIZEOF(t) ((sizeof(t) + _VA_ALIGN - 1) & ~(_VA_ALIGN - 1))
+#define _SLOTSIZEOF(_T) ((sizeof(_T) + _VA_ALIGN - 1) & ~(_VA_ALIGN - 1))
 #define _VA_STRUCT_ALIGN 16
-#define _ALIGNOF(ap) ((((ap)+_VA_STRUCT_ALIGN - 1) & ~(_VA_STRUCT_ALIGN -1)) - (ap))
-#define _APALIGN(t,ap) (__alignof(t) > 8 ? _ALIGNOF((uintptr_t) ap) : 0)
+#define _ALIGNOF(_Ap) ((((_Ap)+_VA_STRUCT_ALIGN - 1) & ~(_VA_STRUCT_ALIGN -1)) - (_Ap))
+#define _APALIGN(_T,_Ap) (__alignof(_T) > 8 ? _ALIGNOF((uintptr_t) _Ap) : 0)
 #else
-#define _SLOTSIZEOF(t) (sizeof(t))
-#define _APALIGN(t,ap) (__alignof(t))
+#define _SLOTSIZEOF(_T) (sizeof(_T))
+#define _APALIGN(_T,_Ap) (__alignof(_T))
 #endif
 
 #if defined(_M_IX86)
 
-#define _INTSIZEOF(n) ((sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1))
-#define _crt_va_start(v,l)	((v) = (va_list)_ADDRESSOF(l) + _INTSIZEOF(l))
-#define _crt_va_arg(v,l)	(*(l *)(((v) += _INTSIZEOF(l)) - _INTSIZEOF(l)))
-#define _crt_va_end(v)		((v) = (va_list)0)
-#define _crt_va_copy(d,s)	((d) = (s))
+#define _INTSIZEOF(_N) ((sizeof(_N) + sizeof(int) - 1) & ~(sizeof(int) - 1))
+#define _crt_va_start(_V,_L)	((_V) = (va_list)_ADDRESSOF(_L) + _INTSIZEOF(_L))
+#define _crt_va_arg(_V,_L)	(*(_L *)(((_V) += _INTSIZEOF(_L)) - _INTSIZEOF(_L)))
+#define _crt_va_end(_V)		((_V) = (va_list)0)
+#define _crt_va_copy(_D,_S)	((_D) = (_S))
 
 #elif defined(_M_AMD64)
 
-#define _PTRSIZEOF(n) ((sizeof(n) + sizeof(void*) - 1) & ~(sizeof(void*) - 1))
-#define _ISSTRUCT(t)  ((sizeof(t) > sizeof(void*)) || (sizeof(t) & (sizeof(t) - 1)) != 0)
-#define _crt_va_start(v,l)	((v) = (va_list)_ADDRESSOF(l) + _PTRSIZEOF(l))
-#define _crt_va_arg(v,t)	_ISSTRUCT(t) ?						\
-				 (**(t**)(((v) += sizeof(void*)) - sizeof(void*))) :	\
-				 ( *(t *)(((v) += sizeof(void*)) - sizeof(void*)))
-#define _crt_va_end(v)		((v) = (va_list)0)
-#define _crt_va_copy(d,s)	((d) = (s))
+#define _PTRSIZEOF(_N) ((sizeof(_N) + sizeof(void*) - 1) & ~(sizeof(void*) - 1))
+#define _ISSTRUCT(_T)  ((sizeof(_T) > sizeof(void*)) || (sizeof(_T) & (sizeof(_T) - 1)) != 0)
+#define _crt_va_start(_V,_L)	((_V) = (va_list)_ADDRESSOF(_L) + _PTRSIZEOF(_L))
+#define _crt_va_arg(_V,_T)	_ISSTRUCT(_T) ?						\
+				 (**(_T**)(((_V) += sizeof(void*)) - sizeof(void*))) :	\
+				 ( *(_T *)(((_V) += sizeof(void*)) - sizeof(void*)))
+#define _crt_va_end(_V)		((_V) = (va_list)0)
+#define _crt_va_copy(_D,_S)	((_D) = (_S))
 
 #elif defined(_M_IA64)
 
@@ -104,4 +104,3 @@ extern "C" {
 #endif
 
 #endif /* _INC_VADEFS */
-

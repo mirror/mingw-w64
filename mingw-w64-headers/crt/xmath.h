@@ -30,7 +30,7 @@ _C_STD_BEGIN
 #define _DMASK ((unsigned short)(0x7fff & ~_DFRAC))
 #define _DMAX ((unsigned short)((1 << (15 - _DOFF)) - 1))
 #define _DSIGN ((unsigned short)0x8000)
-#define DSIGN(x) (((unsigned short *)&(x))[_D0] & _DSIGN)
+#define DSIGN(_X) (((unsigned short *)&(_X))[_D0] & _DSIGN)
 #define HUGE_EXP (int)(_DMAX *900L / 1000)
 #define HUGE_RAD 2.73e9
 #define SAFE_EXP ((unsigned short)(_DMAX >> 1))
@@ -39,7 +39,7 @@ _C_STD_BEGIN
 #define _FMASK ((unsigned short)(0x7fff & ~_FFRAC))
 #define _FMAX ((unsigned short)((1 << (15 - _FOFF)) - 1))
 #define _FSIGN ((unsigned short)0x8000)
-#define FSIGN(x) (((unsigned short *)&(x))[_F0] & _FSIGN)
+#define FSIGN(_X) (((unsigned short *)&(_X))[_F0] & _FSIGN)
 #define FHUGE_EXP (int)(_FMAX *900L / 1000)
 #define FHUGE_RAD 31.8
 #define FSAFE_EXP ((unsigned short)(_FMAX >> 1))
@@ -51,7 +51,7 @@ _C_STD_BEGIN
 #define _LMASK ((unsigned short)0x7fff)
 #define _LMAX ((unsigned short)0x7fff)
 #define _LSIGN ((unsigned short)0x8000)
-#define LSIGN(x) (((unsigned short *)&(x))[_L0] & _LSIGN)
+#define LSIGN(_X) (((unsigned short *)&(_X))[_L0] & _LSIGN)
 #define LHUGE_EXP (int)(_LMAX *900L / 1000)
 #define LHUGE_RAD 2.73e9
 #define LSAFE_EXP ((unsigned short)(_LMAX >> 1))

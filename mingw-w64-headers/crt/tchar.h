@@ -445,13 +445,13 @@ extern "C" {
 #define _istleadbyte(_Char) (0)
 #define _istleadbyte_l(_Char,_Locale) (0)
 
-#define _wcsdec(_cpc1,_cpc2) ((_cpc1)>=(_cpc2) ? NULL : (_cpc2)-1)
-#define _wcsinc(_pc) ((_pc)+1)
-#define _wcsnextc(_cpc) ((unsigned int) *(_cpc))
-#define _wcsninc(_pc,_sz) (((_pc)+(_sz)))
+#define _wcsdec(_Cpc1,_Cpc2) ((_Cpc1)>=(_Cpc2) ? NULL : (_Cpc2)-1)
+#define _wcsinc(_Pc) ((_Pc)+1)
+#define _wcsnextc(_Cpc) ((unsigned int) *(_Cpc))
+#define _wcsninc(_Pc,_Sz) (((_Pc)+(_Sz)))
   _CRTIMP size_t __cdecl __wcsncnt(const wchar_t *_Str,size_t _MaxCount);
-#define _wcsncnt(_cpc,_sz) (__wcsncnt(_cpc,_sz))
-#define _wcsspnp(_cpc1,_cpc2) (!_cpc1 ? NULL : ((*((_cpc1)+wcsspn(_cpc1,_cpc2))) ? ((_cpc1)+wcsspn(_cpc1,_cpc2)) : NULL))
+#define _wcsncnt(_Cpc,_Sz) (__wcsncnt(_Cpc,_Sz))
+#define _wcsspnp(_Cpc1,_Cpc2) (!_Cpc1 ? NULL : ((*((_Cpc1)+wcsspn(_Cpc1,_Cpc2))) ? ((_Cpc1)+wcsspn(_Cpc1,_Cpc2)) : NULL))
 #define _wcsncpy_l(_Destination,_Source,_Count,_Locale) (wcsncpy(_Destination,_Source,_Count))
 #define _wcsncat_l(_Destination,_Source,_Count,_Locale) (wcsncat(_Destination,_Source,_Count))
 #define _wcstok_l(_String,_Delimiters,_Locale) (wcstok(_String,_Delimiters))
@@ -484,7 +484,7 @@ extern "C" {
 
 #define _TEOF EOF
 
-#define __T(x) x
+#define __T(_X) _X
 
 #ifndef __CYGWIN__
 
@@ -929,7 +929,7 @@ extern "C" {
 #endif
 #endif
 
-#define _tccmp(_cp1,_cp2) _tcsnccmp(_cp1,_cp2,1)
+#define _tccmp(_Cp1,_Cp2) _tcsnccmp(_Cp1,_Cp2,1)
 
 #define _istalnum _ismbcalnum
 #define _istalnum_l _ismbcalnum_l
@@ -1054,9 +1054,9 @@ extern "C" {
 #define _istleadbyte(_Char) (0)
 #define _istleadbyte_l(_Char,_Locale) (0)
 
-#define _tclen(_pc) (1)
-#define _tccpy(_pc1,_cpc2) (*(_pc1) = *(_cpc2))
-#define _tccmp(_cpc1,_cpc2) (((unsigned char)*(_cpc1))-((unsigned char)*(_cpc2)))
+#define _tclen(_Pc) (1)
+#define _tccpy(_Pc1,_Cpc2) (*(_Pc1) = *(_Cpc2))
+#define _tccmp(_Cpc1,_Cpc2) (((unsigned char)*(_Cpc1))-((unsigned char)*(_Cpc2)))
 
   /* dirent structures and functions */
 #define _tdirent	dirent
@@ -1106,13 +1106,13 @@ extern "C" {
 #endif
 #endif
 
-#define _strdec(_cpc1,_cpc2) ((_cpc1)>=(_cpc2) ? NULL : (_cpc2)-1)
-#define _strinc(_pc) ((_pc)+1)
-#define _strnextc(_cpc) ((unsigned int) *(const unsigned char *)(_cpc))
-#define _strninc(_pc,_sz) (((_pc)+(_sz)))
+#define _strdec(_Cpc1,_Cpc2) ((_Cpc1)>=(_Cpc2) ? NULL : (_Cpc2)-1)
+#define _strinc(_Pc) ((_Pc)+1)
+#define _strnextc(_Cpc) ((unsigned int) *(const unsigned char *)(_Cpc))
+#define _strninc(_Pc,_Sz) (((_Pc)+(_Sz)))
   _CRTIMP size_t __cdecl __strncnt(const char *_Str,size_t _Cnt);
-#define _strncnt(_cpc,_sz) (__strncnt(_cpc,_sz))
-#define _strspnp(_cpc1,_cpc2) (!_cpc1 ? NULL : ((*((_cpc1)+strspn(_cpc1,_cpc2))) ? ((_cpc1)+strspn(_cpc1,_cpc2)) : NULL))
+#define _strncnt(_Cpc,_Sz) (__strncnt(_Cpc,_Sz))
+#define _strspnp(_Cpc1,_Cpc2) (!_Cpc1 ? NULL : ((*((_Cpc1)+strspn(_Cpc1,_Cpc2))) ? ((_Cpc1)+strspn(_Cpc1,_Cpc2)) : NULL))
 
 #define _strncpy_l(_Destination,_Source,_Count,_Locale) (strncpy(_Destination,_Source,_Count))
 #define _strncat_l(_Destination,_Source,_Count,_Locale) (strncat(_Destination,_Source,_Count))
@@ -1124,8 +1124,8 @@ extern "C" {
 
 #endif /* __CYGWIN__ */
 
-#define _T(x) __T(x)
-#define _TEXT(x) __T(x)
+#define _T(_X) __T(_X)
+#define _TEXT(_X) __T(_X)
 
 #ifdef __cplusplus
 }

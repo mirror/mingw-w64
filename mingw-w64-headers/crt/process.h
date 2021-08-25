@@ -49,8 +49,8 @@ extern "C" {
   /* C99 function name */
   void __cdecl _Exit(int) __MINGW_ATTRIB_NORETURN;
 #ifndef __CRT__NO_INLINE
-  __CRT_INLINE __MINGW_ATTRIB_NORETURN void  __cdecl _Exit(int status)
-  {  _exit(status); }
+  __CRT_INLINE __MINGW_ATTRIB_NORETURN void  __cdecl _Exit(int __status)
+  {  _exit(__status); }
 #endif /* !__CRT__NO_INLINE */
 #endif /* Not  __NO_ISOCEXT */
 
@@ -62,7 +62,7 @@ extern "C" {
 #endif /* _CRT_TERMINATE_DEFINED */
 
   typedef void (__stdcall *_tls_callback_type)(void*,unsigned long,void*);
-  _CRTIMP void __cdecl _register_thread_local_exe_atexit_callback(_tls_callback_type callback);
+  _CRTIMP void __cdecl _register_thread_local_exe_atexit_callback(_tls_callback_type);
 
   void __cdecl __MINGW_NOTHROW _cexit(void);
   void __cdecl __MINGW_NOTHROW _c_exit(void);

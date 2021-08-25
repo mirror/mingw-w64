@@ -190,21 +190,21 @@ __MINGW_EXTENSION typedef unsigned long long   uintmax_t;
 	The trick used here is from Clive D W Feather.
 */
 
-#define INT8_C(val) (INT_LEAST8_MAX-INT_LEAST8_MAX+(val))
-#define INT16_C(val) (INT_LEAST16_MAX-INT_LEAST16_MAX+(val))
-#define INT32_C(val) (INT_LEAST32_MAX-INT_LEAST32_MAX+(val))
+#define INT8_C(_Val) (INT_LEAST8_MAX-INT_LEAST8_MAX+(_Val))
+#define INT16_C(_Val) (INT_LEAST16_MAX-INT_LEAST16_MAX+(_Val))
+#define INT32_C(_Val) (INT_LEAST32_MAX-INT_LEAST32_MAX+(_Val))
 /*  The 'trick' doesn't work in C89 for long long because, without
-    suffix, (val) will be evaluated as int, not intmax_t */
-#define INT64_C(val) val##LL
+    suffix, (_Val) will be evaluated as int, not intmax_t */
+#define INT64_C(_Val) _Val##LL
 
-#define UINT8_C(val) (val)
-#define UINT16_C(val) (val)
-#define UINT32_C(val) (val##U)
-#define UINT64_C(val) val##ULL
+#define UINT8_C(_Val) (_Val)
+#define UINT16_C(_Val) (_Val)
+#define UINT32_C(_Val) (_Val##U)
+#define UINT64_C(_Val) _Val##ULL
 
 /* 7.18.4.2  Macros for greatest-width integer constants */
-#define INTMAX_C(val) val##LL
-#define UINTMAX_C(val) val##ULL
+#define INTMAX_C(_Val) _Val##LL
+#define UINTMAX_C(_Val) _Val##ULL
 
 #endif  /* !defined ( __cplusplus) || defined __STDC_CONSTANT_MACROS */
 

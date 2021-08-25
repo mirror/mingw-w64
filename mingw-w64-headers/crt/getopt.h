@@ -26,7 +26,7 @@ extern int opterr;		/* flag to enable built-in diagnostics... */
 
 extern char *optarg;		/* pointer to argument of current option  */
 
-extern int getopt(int nargc, char * const *nargv, const char *options);
+extern int getopt(int _Nargc, char * const *_Nargv, const char *_Options);
 
 #ifdef _BSD_SOURCE
 /*
@@ -74,10 +74,8 @@ enum    		/* permitted values for its `has_arg' field...	*/
   optional_argument		/* option may take an argument		*/
 };
 
-extern int getopt_long(int nargc, char * const *nargv, const char *options,
-    const struct option *long_options, int *idx);
-extern int getopt_long_only(int nargc, char * const *nargv, const char *options,
-    const struct option *long_options, int *idx);
+extern int getopt_long(int _Nargc, char * const *_Nargv, const char *_Options, const struct option *, int *_Idx);
+extern int getopt_long_only(int _Nargc, char * const *_Nargv, const char *_Options, const struct option *, int *_Idx);
 /*
  * Previous MinGW implementation had...
  */

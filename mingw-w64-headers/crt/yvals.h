@@ -45,8 +45,8 @@
 #define _GLOBAL_USING 1
 #define _HAS_ITERATOR_DEBUGGING 0
 
-#define __STR2WSTR(str) L##str
-#define _STR2WSTR(str) __STR2WSTR(str)
+#define __STR2WSTR(__str) L##__str
+#define _STR2WSTR(__str) __STR2WSTR(__str)
 
 #define __FILEW__ _STR2WSTR(__FILE__)
 #define __FUNCTIONW__ _STR2WSTR(__FUNCTION__)
@@ -55,35 +55,35 @@
 
 #define _SCL_SECURE_INVALID_ARGUMENT_NO_ASSERT _SCL_SECURE_INVALID_PARAMETER("invalid argument")
 #define _SCL_SECURE_OUT_OF_RANGE_NO_ASSERT _SCL_SECURE_INVALID_PARAMETER("out of range")
-#define _SCL_SECURE_ALWAYS_VALIDATE(cond) { if (!(cond)) { _ASSERTE((#cond,0)); _SCL_SECURE_INVALID_ARGUMENT_NO_ASSERT; } }
+#define _SCL_SECURE_ALWAYS_VALIDATE(__cond) { if (!(__cond)) { _ASSERTE((#__cond,0)); _SCL_SECURE_INVALID_ARGUMENT_NO_ASSERT; } }
 
-#define _SCL_SECURE_ALWAYS_VALIDATE_RANGE(cond) { if (!(cond)) { _ASSERTE((#cond,0)); _SCL_SECURE_OUT_OF_RANGE_NO_ASSERT; } }
+#define _SCL_SECURE_ALWAYS_VALIDATE_RANGE(__cond) { if (!(__cond)) { _ASSERTE((#__cond,0)); _SCL_SECURE_OUT_OF_RANGE_NO_ASSERT; } }
 
-#define _SCL_SECURE_CRT_VALIDATE(cond,retvalue) { if (!(cond)) { _ASSERTE((#cond,0)); _SCL_SECURE_INVALID_PARAMETER(cond); return (retvalue); } }
+#define _SCL_SECURE_CRT_VALIDATE(__cond,__retvalue) { if (!(__cond)) { _ASSERTE((#__cond,0)); _SCL_SECURE_INVALID_PARAMETER(__cond); return (__retvalue); } }
 
-#define _SCL_SECURE_VALIDATE(cond)
-#define _SCL_SECURE_VALIDATE_RANGE(cond)
+#define _SCL_SECURE_VALIDATE(__cond)
+#define _SCL_SECURE_VALIDATE_RANGE(__cond)
 
 #define _SCL_SECURE_INVALID_ARGUMENT
 #define _SCL_SECURE_OUT_OF_RANGE
 
-#define _SCL_SECURE_MOVE(func,dst,size,src,count) func((dst),(src),(count))
-#define _SCL_SECURE_COPY(func,dst,size,src,count) func((dst),(src),(count))
+#define _SCL_SECURE_MOVE(__func,__dst,__size,__src,__count) __func((__dst),(__src),(__count))
+#define _SCL_SECURE_COPY(__func,__dst,__size,__src,__count) __func((__dst),(__src),(__count))
 
 #define _SECURE_VALIDATION _Secure_validation
 
 #define _SECURE_VALIDATION_DEFAULT false
 
-#define _SCL_SECURE_TRAITS_VALIDATE(cond)
-#define _SCL_SECURE_TRAITS_VALIDATE_RANGE(cond)
+#define _SCL_SECURE_TRAITS_VALIDATE(__cond)
+#define _SCL_SECURE_TRAITS_VALIDATE_RANGE(__cond)
 
 #define _SCL_SECURE_TRAITS_INVALID_ARGUMENT
 #define _SCL_SECURE_TRAITS_OUT_OF_RANGE
 
-#define _CRT_SECURE_MEMCPY(dest,destsize,source,count) ::memcpy((dest),(source),(count))
-#define _CRT_SECURE_MEMMOVE(dest,destsize,source,count) ::memmove((dest),(source),(count))
-#define _CRT_SECURE_WMEMCPY(dest,destsize,source,count) ::wmemcpy((dest),(source),(count))
-#define _CRT_SECURE_WMEMMOVE(dest,destsize,source,count) ::wmemmove((dest),(source),(count))
+#define _CRT_SECURE_MEMCPY(__dest,__destsize,__source,__count) ::memcpy((__dest),(__source),(__count))
+#define _CRT_SECURE_MEMMOVE(__dest,__destsize,__source,__count) ::memmove((__dest),(__source),(__count))
+#define _CRT_SECURE_WMEMCPY(__dest,__destsize,__source,__count) ::wmemcpy((__dest),(__source),(__count))
+#define _CRT_SECURE_WMEMMOVE(__dest,__destsize,__source,__count) ::wmemmove((__dest),(__source),(__count))
 
 #ifndef _VC6SP2
 #define _VC6SP2 0
@@ -188,7 +188,7 @@ __MINGW_EXTENSION typedef _ULONGLONG _ULonglong;
 #define _Filet _iobuf
 
 #ifndef _FPOS_T_DEFINED
-#define _FPOSOFF(fp) ((long)(fp))
+#define _FPOSOFF(__fp) ((long)(__fp))
 #endif
 
 #define _IOBASE _base

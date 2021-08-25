@@ -229,22 +229,22 @@
 #endif
 
 #if defined (_MSC_VER)
-#  define __MINGW_MSC_PREREQ(major, minor) \
-      (_MSC_VER >= (major * 100 + minor * 10))
+#  define __MINGW_MSC_PREREQ(__major, __minor) \
+      (_MSC_VER >= (__major * 100 + __minor * 10))
 #else
-#  define __MINGW_MSC_PREREQ(major, minor) 0
+#  define __MINGW_MSC_PREREQ(__major, __minor) 0
 #endif
 
 #ifdef __MINGW_MSVC_COMPAT_WARNINGS
 #  if __MINGW_GNUC_PREREQ (4, 5)
-#    define __MINGW_ATTRIB_DEPRECATED_STR(X) \
-       __attribute__ ((__deprecated__ (X)))
+#    define __MINGW_ATTRIB_DEPRECATED_STR(_X) \
+       __attribute__ ((__deprecated__ (_X)))
 #  else
-#    define __MINGW_ATTRIB_DEPRECATED_STR(X) \
+#    define __MINGW_ATTRIB_DEPRECATED_STR(_X) \
        __MINGW_ATTRIB_DEPRECATED
 #  endif
 #else
-#  define __MINGW_ATTRIB_DEPRECATED_STR(X)
+#  define __MINGW_ATTRIB_DEPRECATED_STR(_X)
 #endif /* ifdef __MINGW_MSVC_COMPAT_WARNINGS */
 
 #define __MINGW_SEC_WARN_STR \

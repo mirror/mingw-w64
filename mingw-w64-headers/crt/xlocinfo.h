@@ -36,7 +36,7 @@ _C_LIB_DECL
 #define _X_MESSAGES 6
 #define _NCAT 7
 
-#define _CATMASK(n) ((1 << (n)) >> 1)
+#define _CATMASK(_N) ((1 << (_N)) >> 1)
 #define _M_COLLATE _CATMASK(_X_COLLATE)
 #define _M_CTYPE _CATMASK(_X_CTYPE)
 #define _M_MONETARY _CATMASK(_X_MONETARY)

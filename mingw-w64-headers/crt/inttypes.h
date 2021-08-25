@@ -278,24 +278,24 @@ typedef struct {
 #define SCNuFAST8 "hhu"
 #endif /* __STDC_VERSION__ >= 199901 */
 
-intmax_t __cdecl imaxabs (intmax_t j);
+intmax_t __cdecl imaxabs (intmax_t);
 #ifndef __CRT__NO_INLINE
-__CRT_INLINE intmax_t __cdecl imaxabs (intmax_t j)
-	{return	(j >= 0 ? j : -j);}
+__CRT_INLINE intmax_t __cdecl imaxabs (intmax_t __j)
+	{return	(__j >= 0 ? __j : -__j);}
 #endif
-imaxdiv_t __cdecl imaxdiv (intmax_t numer, intmax_t denom);
+imaxdiv_t __cdecl imaxdiv (intmax_t _Numer, intmax_t _Denom);
 
 /* 7.8.2 Conversion functions for greatest-width integer types */
 
-intmax_t __cdecl strtoimax (const char* __restrict__ nptr,
-                            char** __restrict__ endptr, int base);
-uintmax_t __cdecl strtoumax (const char* __restrict__ nptr,
-			     char** __restrict__ endptr, int base);
+intmax_t __cdecl strtoimax (const char* __restrict__ _Nptr,
+                            char** __restrict__ _Endptr, int _Base);
+uintmax_t __cdecl strtoumax (const char* __restrict__ _Nptr,
+			     char** __restrict__ _Endptr, int _Base);
 
-intmax_t __cdecl wcstoimax (const wchar_t* __restrict__ nptr,
-                            wchar_t** __restrict__ endptr, int base);
-uintmax_t __cdecl wcstoumax (const wchar_t* __restrict__ nptr,
-			     wchar_t** __restrict__ endptr, int base);
+intmax_t __cdecl wcstoimax (const wchar_t* __restrict__ _Nptr,
+                            wchar_t** __restrict__ endptr, int _Base);
+uintmax_t __cdecl wcstoumax (const wchar_t* __restrict__ _Nptr,
+			     wchar_t** __restrict__ _Endptr, int _Base);
 
 #ifdef	__cplusplus
 }

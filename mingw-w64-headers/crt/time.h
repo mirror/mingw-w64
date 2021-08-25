@@ -268,7 +268,7 @@ struct timezone {
   int tz_dsttime;
 };
 
-  extern int __cdecl mingw_gettimeofday (struct timeval *p, struct timezone *z);
+extern int __cdecl mingw_gettimeofday (struct timeval *, struct timezone *);
 #endif /* _TIMEZONE_DEFINED */
 
 #pragma pack(pop)
@@ -309,4 +309,3 @@ __forceinline char *__CRTDECL asctime_r(const struct tm *_Tm, char * _Str) {
 #endif
 
 #endif /* End _TIME_H_ */
-

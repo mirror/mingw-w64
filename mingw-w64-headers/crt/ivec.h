@@ -35,15 +35,15 @@ protected:
     __m64 vec;
 public:
     M64() {}
-    M64(__m64 mm) { vec = mm; }
-    M64(__int64 mm) { _MM_QW = mm; }
-    M64(int i) { vec = _m_from_int(i); }
+    M64(__m64 __mm) { vec = __mm; }
+    M64(__int64 __mm) { _MM_QW = __mm; }
+    M64(int __i) { vec = _m_from_int(__i); }
 
-    operator __m64() const { return vec; }
+    operator __m64() const { return __vec; }
 
-    M64& operator&=(const M64 &a) { return *this = (M64) _m_pand(vec,a); }
-    M64& operator|=(const M64 &a) { return *this = (M64) _m_por(vec,a); }
-    M64& operator^=(const M64 &a) { return *this = (M64) _m_pxor(vec,a); }
+    M64& operator&=(const M64 &__a) { return *this = (M64) _m_pand(__vec,__a); }
+    M64& operator|=(const M64 &__a) { return *this = (M64) _m_por(__vec,__a); }
+    M64& operator^=(const M64 &__a) { return *this = (M64) _m_pxor(__vec,__a); }
 };
 
 #pragma pack(pop)
@@ -54,4 +54,3 @@ public:
 
 #endif
 #endif
-

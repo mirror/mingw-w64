@@ -77,7 +77,7 @@ extern "C" {
   } _LDOUBLE;
 #pragma pack()
 
-#define _PTR_LD(x) ((unsigned char *)(&(x)->ld))
+#define _PTR_LD(_X) ((unsigned char *)(&(_X)->ld))
 
   typedef struct {
     double x;
@@ -496,8 +496,8 @@ float __cdecl __MINGW_NOTHROW strtof(const char * __restrict__ _Str,char ** __re
 
 /* strtold is already an alias to __mingw_strtold */
 #else
-  double __cdecl __MINGW_NOTHROW strtod(const char * __restrict__ _Str,char ** __restrict__ _EndPtr);
-  float __cdecl __MINGW_NOTHROW strtof(const char * __restrict__ nptr, char ** __restrict__ endptr);
+  double __cdecl __MINGW_NOTHROW strtod(const char * __restrict__,char ** __restrict__);
+  float __cdecl __MINGW_NOTHROW strtof(const char * __restrict__, char ** __restrict__);
 #endif /* defined(__USE_MINGW_STRTOX) */
   long double __cdecl __MINGW_NOTHROW strtold(const char * __restrict__ , char ** __restrict__ );
 #if !defined __NO_ISOCEXT
@@ -553,8 +553,8 @@ float __cdecl __MINGW_NOTHROW strtof(const char * __restrict__ _Str,char ** __re
   _CRTIMP wchar_t *__cdecl _ltow(long _Value,wchar_t *_Dest,int _Radix) __MINGW_ATTRIB_DEPRECATED_SEC_WARN;
   _CRTIMP wchar_t *__cdecl _ultow(unsigned long _Value,wchar_t *_Dest,int _Radix) __MINGW_ATTRIB_DEPRECATED_SEC_WARN;
 
-  double __cdecl __mingw_wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr);
-  float __cdecl __mingw_wcstof(const wchar_t * __restrict__ nptr, wchar_t ** __restrict__ endptr);
+  double __cdecl __mingw_wcstod(const wchar_t * __restrict__,wchar_t ** __restrict__);
+  float __cdecl __mingw_wcstof(const wchar_t * __restrict__, wchar_t ** __restrict__);
   long double __cdecl __mingw_wcstold(const wchar_t * __restrict__, wchar_t ** __restrict__);
 
 #if defined(__USE_MINGW_STRTOX)
@@ -568,8 +568,8 @@ float __cdecl __MINGW_NOTHROW strtof(const char * __restrict__ _Str,char ** __re
   }
   /* wcstold is already a mingw implementation */
 #else
-  double __cdecl wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr);
-  float __cdecl wcstof(const wchar_t * __restrict__ nptr, wchar_t ** __restrict__ endptr);
+  double __cdecl wcstod(const wchar_t * __restrict__,wchar_t ** __restrict__);
+  float __cdecl wcstof(const wchar_t * __restrict__, wchar_t ** __restrict__);
 #endif /* defined(__USE_MINGW_STRTOX) */
 #if !defined __NO_ISOCEXT /* in libmingwex.a */
   long double __cdecl wcstold(const wchar_t * __restrict__, wchar_t ** __restrict__);
@@ -650,7 +650,7 @@ unsigned long __cdecl _lrotr(unsigned long,int);
 #undef _rotl64
 #undef _rotr64
   __MINGW_EXTENSION unsigned __int64 __cdecl _rotl64(unsigned __int64 _Val,int _Shift);
-  __MINGW_EXTENSION unsigned __int64 __cdecl _rotr64(unsigned __int64 Value,int Shift);
+  __MINGW_EXTENSION unsigned __int64 __cdecl _rotr64(unsigned __int64 _Val,int _Shift);
 #pragma pop_macro ("_rotl64")
 #pragma pop_macro ("_rotr64")
 #pragma push_macro ("_rotr")
@@ -727,7 +727,7 @@ unsigned long __cdecl _lrotr(unsigned long,int);
 
   __MINGW_EXTENSION long long __cdecl llabs(long long);
 #ifndef __CRT__NO_INLINE
-  __MINGW_EXTENSION __CRT_INLINE long long __cdecl llabs(long long _j) { return (_j >= 0 ? _j : -_j); }
+  __MINGW_EXTENSION __CRT_INLINE long long __cdecl llabs(long long __j) { return (__j >= 0 ? __j : -__j); }
 #endif
 
   __MINGW_EXTENSION long long  __cdecl strtoll(const char * __restrict__, char ** __restrict, int);
@@ -745,12 +745,12 @@ unsigned long __cdecl _lrotr(unsigned long,int);
 
   /* __CRT_INLINE using non-ansi functions */
 #ifndef __CRT__NO_INLINE
-  __MINGW_EXTENSION __CRT_INLINE long long  __cdecl atoll (const char * _c) { return _atoi64 (_c); }
-  __MINGW_EXTENSION __CRT_INLINE char *__cdecl lltoa (long long _n, char * _c, int _i) { return _i64toa (_n, _c, _i); }
-  __MINGW_EXTENSION __CRT_INLINE char *__cdecl ulltoa (unsigned long long _n, char * _c, int _i) { return _ui64toa (_n, _c, _i); }
-  __MINGW_EXTENSION __CRT_INLINE long long  __cdecl wtoll (const wchar_t * _w) { return _wtoi64 (_w); }
-  __MINGW_EXTENSION __CRT_INLINE wchar_t *__cdecl lltow (long long _n, wchar_t * _w, int _i) { return _i64tow (_n, _w, _i); }
-  __MINGW_EXTENSION __CRT_INLINE wchar_t *__cdecl ulltow (unsigned long long _n, wchar_t * _w, int _i) { return _ui64tow (_n, _w, _i); }
+  __MINGW_EXTENSION __CRT_INLINE long long  __cdecl atoll (const char * __c) { return _atoi64 (__c); }
+  __MINGW_EXTENSION __CRT_INLINE char *__cdecl lltoa (long long __n, char * __c, int __i) { return _i64toa (__n, __c, __i); }
+  __MINGW_EXTENSION __CRT_INLINE char *__cdecl ulltoa (unsigned long long __n, char * __c, int __i) { return _ui64toa (__n, __c, __i); }
+  __MINGW_EXTENSION __CRT_INLINE long long  __cdecl wtoll (const wchar_t * _w) { return _wtoi64 (__w); }
+  __MINGW_EXTENSION __CRT_INLINE wchar_t *__cdecl lltow (long long __n, wchar_t * __w, int __i) { return _i64tow (__n, __w, __i); }
+  __MINGW_EXTENSION __CRT_INLINE wchar_t *__cdecl ulltow (unsigned long long __n, wchar_t * __w, int __i) { return _ui64tow (__n, __w, __i); }
 #endif /* !__CRT__NO_INLINE */
 #endif /* (__STRICT_ANSI__)  */
 
