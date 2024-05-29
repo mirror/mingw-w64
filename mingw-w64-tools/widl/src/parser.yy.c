@@ -743,7 +743,7 @@ static int cbufalloc = 0;
 static int kw_token(const char *kw);
 static int attr_token(const char *kw);
 
-#define MAX_IMPORT_DEPTH 10
+#define MAX_IMPORT_DEPTH 20
 struct {
   YY_BUFFER_STATE state;
   char *input_name;
@@ -2627,6 +2627,9 @@ int do_import(char *fname)
             path = xstrdup( fname );
         else if (!(path = wpp_find_include( fname, input_name )))
             error_loc("Unable to open include file %s\n", fname);
+
+        if (import_stack_ptr == MAX_IMPORT_DEPTH)
+            error_loc("Exceeded max import depth\n");
 
 	import_stack[ptr].temp_name = temp_name;
 	import_stack[ptr].input_name = input_name;
